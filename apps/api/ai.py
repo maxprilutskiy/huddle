@@ -38,12 +38,20 @@ def get_embeddings(filename):
         #Generate embeddings for the concatenated text
         embeddings = embed_model.get_text_embedding(text_to_embed)
         
-        # Append embeddings to the list
-        embeddings_list.append(embeddings)
+        # Append embeddings to the list in the required format
+        embeddings_list.append({"vector": embeddings})
     
-    # Now embeddings_list contains embeddings for each entry in your JSON
-    # You can use embeddings_list for further processing or analysis
-    print(embeddings_list)
+    # Create the final dictionary matching the required format
+    output_dict = {"rows": embeddings_list}
+    
+    # Define the output file path and name
+    output_file = 'embeddings_output.json'
+
+    # Save the output to a new JSON file
+    with open(output_file, 'w') as output_json_file:
+        json.dump(output_dict, output_json_file)
+
+    print(f"Embeddings exported to {output_file}")
     
 # function that accepts an embedding and returns a list of similar embeddings
 def get_similar(embedding):
