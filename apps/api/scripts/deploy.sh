@@ -4,10 +4,10 @@
 set -e
 
 # Log in to the Heroku container registry
-heroku container:login
+pnpm heroku container:login
 
 # Build and push the Docker image to heroku
-heroku container:push web --app huddle-api --context-path ./
+pnpm heroku container:push web --app huddle-api --context-path ./
 
 # Release the Docker image
-heroku container:release web --app huddle-api
+pnpm heroku container:release web --app huddle-api

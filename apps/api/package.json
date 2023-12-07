@@ -11,5 +11,8 @@
   "license": "ISC",
   "dependencies": {
     "@huddle/prisma": "workspace:*"
+  },
+  "devDependencies": {
+    "heroku": "^8.7.1"
   }
 }
