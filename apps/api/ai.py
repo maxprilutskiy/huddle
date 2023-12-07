@@ -1,5 +1,4 @@
 from dotenv import load_dotenv
-from llama_index.llms.vertex import Vertex
 from llama_index.embeddings import GooglePaLMEmbedding
 import json
 import os
@@ -9,7 +8,7 @@ load_dotenv()
 
 # Now you can access the variables defined in .env
 test_env_var = os.getenv('GOOGLE_VERTEX_AUTH')
-filename = 'data.json'
+filename = 'input.json'
 model_name = "models/embedding-gecko-001"
 google_cloud_api_key = os.getenv('GOOGLE_CLOUD_API_KEY')
 embed_model = GooglePaLMEmbedding(model_name=model_name, api_key=google_cloud_api_key)
@@ -55,4 +54,4 @@ def get_embeddings(filename):
 def get_similar(embedding):
     return [[1, 2, 3, 4, 5, 6, 7, 8, 9, 10], [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]]
 
-get_embeddings('data.json')
+get_embeddings(filename)
