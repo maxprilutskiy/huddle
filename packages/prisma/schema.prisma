@@ -9,16 +9,16 @@ generator client {
 }
 
 model User {
-  id        Int      @id @default(autoincrement())
+  id        String      @id @default(cuid())
   createdAt DateTime @default(now())
   email     String   @unique
   profile   UserProfile?
 }
 
 model UserProfile {
-  id        Int      @id @default(autoincrement())
+  id        String      @id @unique
   createdAt DateTime @default(now())
-  userId    Int      @unique
+  userId    String      @unique
   user      User     @relation(fields: [userId], references: [id])
   
   name      String
@@ -27,5 +27,5 @@ model UserProfile {
   latest_achievement    String
   current_challenge     String
 
-  zilliz_embeddings_id Int
+  zilliz_embeddings_id String @unique 
 }
