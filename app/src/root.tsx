@@ -25,7 +25,7 @@ export default function App() {
   return (
     <html lang="en" className="dark text-foreground bg-background h-full">
       <head>
-        <title>Relescope</title>
+        <title>Huddle</title>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
@@ -51,7 +51,7 @@ export default function App() {
       <nav className='py-4 flex justify-between items-center'>
         <div className="flex gap-2 items-center cursor-pointer" onClick={() => navigate('/')}>
           <img src={logo} alt="relelscope logo" className='w-10 h-10' />
-          <span className="font-semibold">Relescope</span>
+          <span className="font-semibold">Huddle</span>
         </div>
         <ul className='flex gap-4 items-center'>
 
@@ -78,7 +78,7 @@ export default function App() {
     return (
       <footer className='py-4 flex justify-between text-foreground-500 text-sm'>
         <p>
-          Relescope © {new Date().getFullYear()}
+          Huddle © {new Date().getFullYear()}
         </p>
         <p>
           Version 0.34.1

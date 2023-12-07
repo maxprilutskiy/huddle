@@ -14,7 +14,7 @@ export default function App() {
         <CardBody>
           <Spacer y={4} />
           <h1 className="text-center text-3xl font-semibold">
-            Relescope
+            Huddle
           </h1>
           <Spacer y={2} />
           <p className="text-center text-foreground-400">
