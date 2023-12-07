@@ -1,0 +1,21 @@
+{
+  "name": "@huddle/prisma",
+  "version": "1.0.0",
+  "description": "",
+  "main": "build/index.js",
+  "types": "build/index.d.ts",
+  "scripts": {
+    "build": "prisma generate && tsc",
+    "deploy": "prisma migrate deploy"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@prisma/client": "5.7.0",
+    "prisma": "^5.7.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.1.0"
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    "outDir": "build",
+    "target": "es5",
+    "module": "CommonJS",
+    "lib": ["esnext", "dom"],
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "jsx": "react",
+    "allowJs": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "forceConsistentCasingInFileNames": true,
+    "noUnusedParameters": true,
+    "noUnusedLocals": true,
+    "strict": true,
+    "pretty": true,
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "declaration": true,
+    "declarationMap": true,
+		"newLine": "lf",
+		"stripInternal": true,
+		"noImplicitReturns": true,
+		"noUncheckedIndexedAccess": true,
+		"noEmitOnError": true,
+		"useDefineForClassFields": true,
+		"skipLibCheck": true
+  },
+  "exclude": ["src/**/*.spec.ts", "src/**/*.spec.tsx"],
+  "include": ["src/**/*.ts", "src/**/*.tsx"]
+}

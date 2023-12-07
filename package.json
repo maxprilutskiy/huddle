@@ -1,0 +1,7 @@
+{
+  "name": "huddle",
+  "version": "1.0.0",
+  "devDependencies": {
+    "turbo": "^1.11.0"
+  }
+}

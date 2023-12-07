@@ -1,16 +1,15 @@
 {
-  "name": "prisma",
+  "name": "@huddle/api",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "deploy": "./scripts/deploy.sh"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@prisma/client": "5.7.0",
-    "prisma": "^5.7.0"
+    "@huddle/prisma": "workspace:*"
   }
 }

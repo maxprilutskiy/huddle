@@ -13,6 +13,7 @@
     "deploy": "./scripts/deploy.sh"
   },
   "dependencies": {
+    "@huddle/prisma": "workspace:*",
     "@nextui-org/react": "^2.2.9",
     "@remix-run/cloudflare": "^2.2.0",
     "@remix-run/cloudflare-pages": "^2.2.0",
