@@ -19,6 +19,9 @@ jobs:
           heroku --version
 
       - name: Build and push
-        run: ./api/scripts/deploy.sh
+        run: |
+          cd api
+          ./scripts/deploy.sh
+          cd -
         env:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
