@@ -1,26 +1,41 @@
 import logo from '~/images/huddle.png';
-import type { LinksFunction } from "@remix-run/cloudflare";
+import type { LinksFunction, LoaderFunction } from "@remix-run/cloudflare";
 import { cssBundleHref } from "@remix-run/css-bundle";
 import {
+  Form,
   Links,
   LiveReload,
   Meta,
   Outlet,
   Scripts,
   ScrollRestoration,
+  useLoaderData,
   useNavigate,
 } from "@remix-run/react";
 import { Button, Link, NextUIProvider } from "@nextui-org/react";
 import tailwindCss from "~/styles/tailwind.css";
-import { LuSparkles } from 'react-icons/lu';
+import { getAuthenticator } from './services/auth.server';
 
 export const links: LinksFunction = () => [
   ...(cssBundleHref ? [{ rel: "stylesheet", href: cssBundleHref }] : []),
   { rel: "stylesheet", href: tailwindCss },
 ];
 
+export const loader: LoaderFunction = async ({ request, context }) => {
+  const authenticator = getAuthenticator(context.env);
+  // get the user data or redirect to /login if it failed
+  const user = await authenticator.isAuthenticated(request);
+
+  if (user) {
+    return { user };
+  } else {
+    return null;
+  }
+};
+
 export default function App() {
   const navigate = useNavigate();
+  const data = useLoaderData<any>();
 
   return (
     <html lang="en" className="dark text-foreground bg-background h-full">
@@ -57,18 +72,21 @@ export default function App() {
 
         </ul>
         <div className='flex gap-4'>
-          <Button
-            href="/auth"
-            as={Link}
-            children="Log in"
-          />
-          <Button
-            startContent={<LuSparkles />}
-            as={Link}
-            href='/auth'
-            color="success"
-            children="Apply"
-          />
+          {data?.user ? (
+            <Form method='POST' action="/deauth">
+              <Button
+                type="submit"
+                children="Log out"
+              />
+            </Form>
+          ) : (
+            <Button
+              href="/auth"
+              as={Link}
+              children="Log in"
+              color="success"
+            />
+          )}
         </div>
       </nav>
     );
