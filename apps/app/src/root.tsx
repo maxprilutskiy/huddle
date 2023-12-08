@@ -16,6 +16,7 @@ import { Button, Link, NextUIProvider } from "@nextui-org/react";
 import tailwindCss from "~/styles/tailwind.css";
 import { getAuthenticator } from './services/auth.server';
 import { getSupabase } from './services/supabase.server';
+import GlobalLoading from './components/global-loading';
 
 export const links: LinksFunction = () => [
   ...(cssBundleHref ? [{ rel: "stylesheet", href: cssBundleHref }] : []),
@@ -52,6 +53,7 @@ export default function App() {
       </head>
       <body className="h-full overflow-x-hidden overflow-y-scroll">
         <NextUIProvider className="h-full" navigate={navigate}>
+        <GlobalLoading />
           <div className='px-4 h-full w-full flex flex-col justify-between max-w-6xl mx-auto'>
             {renderNav()}
             <Outlet />
