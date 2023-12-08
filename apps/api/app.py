@@ -4,7 +4,7 @@ from flask import Flask, jsonify, request
 app = Flask(__name__)
 
 @app.route('/create-embeddings', methods=['POST'])
-def get_embeddings():
+def create_embeddings():
     data = request.get_json()
     input_text = data.get('input', None)
     if input_text is None:
