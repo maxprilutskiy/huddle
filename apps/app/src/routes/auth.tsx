@@ -43,7 +43,11 @@ export default function App() {
           </h1>
           <Spacer y={2} />
           <p className="text-center text-foreground-400">
-            Log in to continue
+            Huddle is a networking for shy builders, indie hackers, and startup founders.
+          </p>
+          <Spacer y={2} />
+          <p className="text-center text-foreground-400">
+            Please log in to continue. 😎
           </p>
           <Spacer y={6} />
           <Form method="POST">
@@ -51,11 +55,16 @@ export default function App() {
             <Spacer y={4} />
             <Input name="password" type="password" variant="bordered" label="Password" />
             <Spacer y={6} />
-            <Button color="success" variant="flat" size="lg" type="submit">
+            <Button color="success" variant="flat" size="lg" type="submit" fullWidth>
               Login
             </Button>
           </Form>
-          <Spacer y={2} />
+          <Spacer y={8} />
+          <p className="max-w-md text-foreground-500 text-sm text-center">
+            This is an early alpha version.
+            <br />
+            Please use admin@example.com as your email and any password for logging in.
+          </p>
         </CardBody>
       </Card>
     </main>
