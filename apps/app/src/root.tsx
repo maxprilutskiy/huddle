@@ -99,10 +99,9 @@ export default function App() {
           Huddle © {new Date().getFullYear()}
         </p>
         <p>
-          Version 0.34.1
         </p>
         <p>
-          Built by <Link className="text-sm" target="_blank" href="https://twitter.com/MaxPrilutskiy">Max</Link> and <Link className="text-sm" target="_blank" href="https://twitter.com/belakhonya">Veronica</Link> in Barcelona.
+          Built by <Link className="text-sm" target="_blank" href="https://twitter.com/MaxPrilutskiy">Max</Link> and <Link className="text-sm" target="_blank" href="https://twitter.com/belakhonya">Veronica</Link> from Barcelona.
         </p>
       </footer>
     );

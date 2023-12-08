@@ -2,7 +2,7 @@
 import { Authenticator } from "remix-auth";
 import { sessionStorage } from "~/services/session.server";
 import { FormStrategy } from "remix-auth-form";
-import { createClient } from '@supabase/supabase-js';
+import { getSupabase } from "./supabase.server";
 
 export const getAuthenticator = (env: any) => {
   // Create an instance of the authenticator, pass a generic with what
@@ -15,7 +15,7 @@ export const getAuthenticator = (env: any) => {
       const email = form.get("email");
       let user: any = null;
       if (email === 'admin@example.com') {
-        const sb = createClient(env.SUPABASE_URL, env.SUPABASE_KEY);
+        const sb = getSupabase(env);
         const userFromDb = await sb.from('User').select('*').eq('email', email).single();
         user = userFromDb.data ? { id: userFromDb.data.id } : null;
       }
