@@ -45,7 +45,6 @@ def get_embeddings(filename):
         
         # Concatenate text data
         text_to_embed = f"{location} {company_description} {latest_achievement} {current_challenge}"
-        
         #Generate embeddings for the concatenated text
         embeddings = embed_model.get_text_embedding(text_to_embed)
         
@@ -78,7 +77,7 @@ def get_similar(filename):
         print("Request failed with status code:", response.status_code)
         print(response.text)  # This will show the error message or details
 
-# get_embeddings(filename)
+get_embeddings(database)
 # get_similar(input_vector)
 
 
