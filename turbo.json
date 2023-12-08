@@ -2,13 +2,21 @@
   "$schema": "https://turbo.build/schema.json",
   "pipeline": {
     "build": {
-      "dependsOn": ["^build"]
+      "dependsOn": [
+        "^build"
+      ]
     },
     "test": {
-      "dependsOn": ["^build"]
+      "dependsOn": [
+        "^build"
+      ]
     },
     "deploy": {
-      "dependsOn": ["build", "test", "^deploy"]
+      "dependsOn": [
+        "build",
+        "test",
+        "^deploy"
+      ]
     }
   }
 }
