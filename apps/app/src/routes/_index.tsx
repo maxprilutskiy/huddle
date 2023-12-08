@@ -25,19 +25,30 @@ export default function Home() {
   const data = useLoaderData<any>();
   const navigate = useNavigate();
 
-  const randomProfilePic = `https://i.pravatar.cc/400?name=${data.suggestion.name}`;
-  const score = .87;
+  if (!data.suggestion) {
+    return (
+      <main>
+        <div className="flex flex-col items-center justify-center h-screen">
+          <h1 className="text-3xl font-semibold">No suggestions available</h1>
+          <p className="text-foreground-400">You've seen all the suggestions for now.</p>
+          <p className="text-foreground-400">Please come back later.</p>
+        </div>
+      </main>
+    );
+  }
+
+  const randomProfilePic = `https://i.pravatar.cc/400?name=${data.suggestion.profile.name}`;
   return (
     <main>
       <ProfileSuggestionCard
         className="max-w-sm transform translate-y-[-50%] translate-x-[-50%] top-1/2 left-1/2"
         profilePictureUrl={randomProfilePic}
-        name={data.suggestion.name}
-        location={data.suggestion.location}
-        companyDescription={data.suggestion.company_description}
-        latestAchievement={data.suggestion.latest_achievement}
-        currentChallenge={data.suggestion.current_challenge}
-        score={score}
+        name={data.suggestion.profile.name}
+        location={data.suggestion.profile.location}
+        companyDescription={data.suggestion.profile.company_description}
+        latestAchievement={data.suggestion.profile.latest_achievement}
+        currentChallenge={data.suggestion.profile.current_challenge}
+        score={data.suggestion.score}
         onRefresh={() => navigate('.', { replace: true })}
       />
     </main>

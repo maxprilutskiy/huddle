@@ -22,7 +22,7 @@ export default function ProfileSuggestionCard(props: ProfileSuggestionCardProps)
             </div>
             <Tooltip content="Based on your current work, past achievements, and current challenges.">
               <Chip color="warning" variant="shadow">
-                {Number(props.score * 100).toFixed(0)}% match
+                {Number(props.score * 100).toFixed(2)}% match
               </Chip>
             </Tooltip>
           </div>

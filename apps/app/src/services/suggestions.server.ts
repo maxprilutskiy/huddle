@@ -9,7 +9,7 @@ export async function generateProfileSuggestion(env: any, currentUserId: string)
 
   const currentProfileEmbeddingsId = currentProfile.zilliz_embeddings_id;
 
-  const similarities = await fetch(`https://api.huddle.sh/get-similar`, {
+  const similarities: any[] = await fetch(`https://api.huddle.sh/get-similar`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -17,18 +17,33 @@ export async function generateProfileSuggestion(env: any, currentUserId: string)
     body: JSON.stringify({
       embeddings_id: currentProfileEmbeddingsId,
     }),
-  }).then(r => r.json());
+  })
+    .then(r => r.json())
 
   console.log(similarities);
 
-  const countResponse = await sb.from("UserProfile").select("id", { count: "exact", head: true }).not('id', 'eq', currentUserId);
+  const countResponse = await sb
+    .from("UserProfile")
+    .select("id", { count: "exact", head: true })
+    .not('id', 'eq', currentUserId)
+    .in('zilliz_embeddings_id', similarities.map((item: any) => item.id));
+
   const count = countResponse.count || 0;
 
-  const randomIndex = Math.floor(Math.random() * count);
+  const profiles = await sb
+    .from("UserProfile")
+    .select("*")
+    .not('id', 'eq', currentUserId)
+    .in('zilliz_embeddings_id', similarities.map((item: any) => item.embeddings_id));
 
-  const profiles = await sb.from("UserProfile").select("*").not('id', 'eq', currentUserId).range(randomIndex, randomIndex + 1);
-  const profile = profiles.data?.[0];
+  const randomIndex = Math.floor(Math.random() * (profiles.data?.length || 0));
+  const profile = profiles.data?.[randomIndex];
+
+  console.log({ similarities, count, randomIndex, profiles, profile });
+
   if (!profile) { return null; }
 
-  return profile;
+  const score = similarities.find((item: any) => item.embeddings_id === profile.zilliz_embeddings_id)?.score || .99;
+
+  return { profile, score };
 }
