@@ -30,7 +30,12 @@ export const action: ActionFunction = async ({ request, context }) => {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      text: `${companyDescription} ${latestAchievement} ${currentChallenge}`,
+      text: `
+Location: "${location}".
+What I'm working on: "${companyDescription}".
+My latest achievement: "${latestAchievement}".
+My current challenge: "${currentChallenge}".
+      `,
     }),
   }).then(r => r.json()).then((r: any) => r.embeddings_id);
 

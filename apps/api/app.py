@@ -70,6 +70,10 @@ def get_similar():
     embeddings = [{ 'embeddings_id': '123', 'score': 0.9 }, { 'embeddings_id': '234', 'score': 0.85 }]
     return jsonify({'embeddings': embeddings})
 
+@app.route('/', methods=['GET'])
+def index():
+    return jsonify({'message': 'Hello world'})
+
 if __name__ == '__main__':
     # The application runs on the port provided by Heroku or 3000 if it's not set
     port = int(os.environ.get('PORT', 3000))
