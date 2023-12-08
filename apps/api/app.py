@@ -105,9 +105,8 @@ def create_embeddings():
 
 @app.route('/get-similar', methods=['GET'])
 def get_similar():
-    #data = request.get_json()
-    #embeddings_id = data.get('embeddings_id', None)
-    embeddings_id = '446160555542072221'
+    data = request.get_json()
+    embeddings_id = data.get('embeddings_id', None)
     if embeddings_id is None or not isinstance(embeddings_id, str):
         return jsonify({'error': 'No input field provided or input is not a string'}), 400
     embedding_res = get_embeddings_by_id(embeddings_id)
