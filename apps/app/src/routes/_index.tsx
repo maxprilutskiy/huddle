@@ -26,7 +26,7 @@ export default function Home() {
   const navigate = useNavigate();
 
   const randomProfilePic = `https://i.pravatar.cc/400?name=${data.suggestion.name}`;
-  const suggestionReason = 'You both have a passion for the same things!'
+  const score = .87;
   return (
     <main>
       <ProfileSuggestionCard
@@ -37,7 +37,7 @@ export default function Home() {
         companyDescription={data.suggestion.company_description}
         latestAchievement={data.suggestion.latest_achievement}
         currentChallenge={data.suggestion.current_challenge}
-        suggestionReason={suggestionReason}
+        score={score}
         onRefresh={() => navigate('.', { replace: true })}
       />
     </main>

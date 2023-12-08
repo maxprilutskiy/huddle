@@ -1,4 +1,4 @@
-import { Button, Card, CardBody, Image, Spacer } from "@nextui-org/react";
+import { Button, Card, CardBody, Chip, Image, Spacer, Tooltip } from "@nextui-org/react";
 import clsx from "clsx";
 
 export default function ProfileSuggestionCard(props: ProfileSuggestionCardProps) {
@@ -15,8 +15,17 @@ export default function ProfileSuggestionCard(props: ProfileSuggestionCardProps)
           alt="Profile picture"
         />
         <section className="grow">
-          <h3 className="text-xl font-bold">{props.name}</h3>
-          <h4 className="text-md text-foreground-500">{props.location}</h4>
+          <div className="flex justify-between items-start">
+            <div>
+              <h3 className="text-xl font-bold">{props.name}</h3>
+              <h4 className="text-md text-foreground-500">{props.location}</h4>
+            </div>
+            <Tooltip content="Based on your current work, past achievements, and current challenges.">
+              <Chip color="warning" variant="shadow">
+                {Number(props.score * 100).toFixed(0)}% match
+              </Chip>
+            </Tooltip>
+          </div>
           <Spacer y={2} />
           <strong className="text-sm">Works on: </strong>
           <p className="text-sm">{props.companyDescription}</p>
@@ -67,7 +76,7 @@ export type ProfileSuggestionCardProps = {
   latestAchievement: string;
   currentChallenge: string;
 
-  suggestionReason: string;
+  score: number;
 
   onRefresh?: () => void;
 };
