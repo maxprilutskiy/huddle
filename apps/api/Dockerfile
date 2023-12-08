@@ -1,5 +1,5 @@
 # Use an official Python runtime as a parent image
-FROM python:3.12-slim
+FROM python:3.10-slim-buster
 
 # Set the working directory in the container to /app
 WORKDIR /app
@@ -13,7 +13,7 @@ RUN apt-get update && apt-get install -y \
   && rm -rf /var/lib/apt/lists/*
 
 # Install gcc, g++ and other dependencies
-RUN apt-get update && apt_get install -y \
+RUN apt-get update && apt-get install -y \
   gcc \
   g++ \
   && rm -rf /var/lib/apt/lists/*
