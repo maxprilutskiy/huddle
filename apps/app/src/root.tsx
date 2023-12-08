@@ -15,6 +15,7 @@ import {
 import { Button, Link, NextUIProvider } from "@nextui-org/react";
 import tailwindCss from "~/styles/tailwind.css";
 import { getAuthenticator } from './services/auth.server';
+import { getSupabase } from './services/supabase.server';
 
 export const links: LinksFunction = () => [
   ...(cssBundleHref ? [{ rel: "stylesheet", href: cssBundleHref }] : []),
@@ -25,9 +26,12 @@ export const loader: LoaderFunction = async ({ request, context }) => {
   const authenticator = getAuthenticator(context.env);
 
   const user = await authenticator.isAuthenticated(request);
+  
+  const sb = getSupabase(context.env);
+  const hasUserProfile = await sb.from('UserProfile').select('*').eq('id', user?.id).single().then(res => !!res.data);
 
   if (user) {
-    return { user };
+    return { user, hasUserProfile };
   } else {
     return null;
   }
@@ -69,16 +73,30 @@ export default function App() {
           <span className="font-semibold">Huddle</span>
         </div>
         <ul className='flex gap-4 items-center'>
-
         </ul>
         <div className='flex gap-4'>
           {data?.user ? (
+            <>
+            <Form method='POST' action="/reset">
+              <Button
+                type="submit"
+                children="Reset onboarding"
+                color="primary"
+                variant='flat'
+                onClick={(e) => {
+                  if (!confirm('Are you sure you want to reset your onboarding?')) {
+                    e.preventDefault();
+                  }
+                }}
+              />
+            </Form>
             <Form method='POST' action="/deauth">
               <Button
                 type="submit"
                 children="Log out"
               />
             </Form>
+            </>
           ) : (
             <Button
               href="/auth"
