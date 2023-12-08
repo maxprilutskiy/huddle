@@ -103,7 +103,7 @@ def create_embeddings():
         print(response.text)  # This will show the error message or details
         return jsonify(response.text)
 
-@app.route('/get-similar', methods=['GET'])
+@app.route('/get-similar', methods=['POST'])
 def get_similar():
     data = request.get_json()
     embeddings_id = data.get('embeddings_id', None)
