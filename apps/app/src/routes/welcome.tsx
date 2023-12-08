@@ -24,6 +24,16 @@ export const action: ActionFunction = async ({ request, context }) => {
   const userProfile = await sb.from('UserProfile').select('*').eq('id', user.id).single();
   if (userProfile.data) { return null; }
 
+  const embeddingsId = await fetch('https://api.huddle.sh/create-embeddings', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      text: `${companyDescription} ${latestAchievement} ${currentChallenge}`,
+    }),
+  }).then(r => r.json()).then((r: any) => r.embeddings_id);
+
   const profileCreationResponse = await sb.from('UserProfile').insert({
     id: user.id,
     userId: user.id,
@@ -32,7 +42,7 @@ export const action: ActionFunction = async ({ request, context }) => {
     company_description: companyDescription,
     latest_achievement: latestAchievement,
     current_challenge: currentChallenge,
-    zilliz_embeddings_id: '',
+    zilliz_embeddings_id: embeddingsId,
   });
   if (profileCreationResponse.error) { return null; }
 

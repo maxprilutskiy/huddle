@@ -11,6 +11,7 @@ export const action: ActionFunction = async ({ request, context }) => {
   if (!user) { return null; }
 
   const sb = getSupabase(context.env);
+
   await sb.from('UserProfile').delete().eq('id', user.id);
 
   return redirect('/');
