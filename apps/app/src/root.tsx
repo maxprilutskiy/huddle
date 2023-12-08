@@ -23,7 +23,7 @@ export const links: LinksFunction = () => [
 
 export const loader: LoaderFunction = async ({ request, context }) => {
   const authenticator = getAuthenticator(context.env);
-  // get the user data or redirect to /login if it failed
+
   const user = await authenticator.isAuthenticated(request);
 
   if (user) {
