@@ -27,3 +27,9 @@ pip freeze > requirements.txt
 ```bash
 python app.py
 ```
+
+## Build the docker image
+
+```bash
+docker build -t api .
+```
