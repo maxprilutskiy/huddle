@@ -119,7 +119,7 @@ export default function App() {
         <p>
         </p>
         <p>
-          Built by <Link className="text-sm" target="_blank" href="https://twitter.com/MaxPrilutskiy">Max</Link> and <Link className="text-sm" target="_blank" href="https://twitter.com/belakhonya">Veronica</Link> from Barcelona.
+          Built by <Link className="text-sm" target="_blank" href="https://twitter.com/MaxPrilutskiy">Max</Link> and <Link className="text-sm" target="_blank" href="https://twitter.com/vrcprl">Veronica</Link> from Barcelona.
         </p>
       </footer>
     );
