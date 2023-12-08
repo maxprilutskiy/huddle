@@ -77,7 +77,6 @@ def index():
 if __name__ == '__main__':
     # The application runs on the port provided by Heroku or 3000 if it's not set
     port = int(os.environ.get('PORT', 3000))
-    #app.run(host='0.0.0.0', port=port)
+    app.run(host='0.0.0.0', port=port)
     print('Here')
     create_embeddings()
-    
