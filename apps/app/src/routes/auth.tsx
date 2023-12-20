@@ -43,7 +43,7 @@ export default function App() {
           </h1>
           <Spacer y={2} />
           <p className="text-center text-foreground-400">
-            Huddle is a networking for shy builders, indie hackers, and startup founders.
+            Huddle is a networking platform for shy builders, indie hackers, and startup founders.
           </p>
           <Spacer y={2} />
           <p className="text-center text-foreground-400">
